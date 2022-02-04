@@ -1,50 +1,38 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace ConsoleApp3
 {
-    public class ArrayReverse
+    abstract class Person
     {
-        public static void Main(string[] args)
-        {
-            int[] numbers = GenerateNumbers();
-            ReverseArray(numbers);
-            PrintNumbers(numbers);
-        }
-
-        public static int[] GenerateNumbers()
-        {
-            Random _random = new Random(10);
-            int[] num = new int[10];
-            for (int i = 0; i < num.Length; i++)
-            {
-                num[i] = _random.Next();
-
-                Console.WriteLine(_random.Next());
-            }
-            return num;
-        }
-
-        public static void ReverseArray(int[] numbers)
-        {
-            for (int i = 0; i < numbers.Length; i++)
-            {
-                for (int j = numbers.Length - 1; j >= 0; j--)
-                {
-                    int temp = i;
-                    i = j;
-                    j = temp;
-                }
-            }
-        }
-
-        public static void PrintNumbers(int[] numbers)
-        {
-            for (int i = 0; i < numbers.Length; i++)
-            {
-                Console.WriteLine(numbers[i]);
-            }
-        }
+        
+        public int age { get; set; }
+        public abstract decimal salary { get; set; }
+        public  List<string>? Address { get; set; }
     }
 
-        
+       
+
+    class Student : Person
+    {
+        public List<string>? Course { get; set; }
+        public double gpa { get; set; }
+        public override decimal salary { get; set; } 
+        public string? grade { get; set; }
+    }
+
+    class Instructor : Person
+    {
+        public override decimal salary { get; set; }
+        public int deptID { get; set; }
+
+    }
+
+    public interface IDepartment<T> where T : class
+    {
+         void Budget()
+    }
 }
